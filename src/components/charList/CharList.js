@@ -3,30 +3,25 @@ import propTypes from 'prop-types'
 import './charList.scss'
 import Spinner from '../spinner/Spinner'
 import Error from '../error/Error'
-import MarvelService from '../../services/MarvelService'
+import useMarvelService from '../../services/MarvelService'
 
 const CharList = (props) => {
   const [charList, setCharList] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
   const [newItemLoading, setNewItemLoading] = useState(false)
   const [offset, setOffset] = useState(210)
   const [charEnded, setCharEnded] = useState(false)
 
-  const marvelService = new MarvelService()
+  const {loading, error, getAllCharacters} = useMarvelService()
 
   useEffect(() => {
-    onRequest()
+    onRequest(offset, true)
   }, [])
 
-  const onRequest = (offset) => {
-    onCharListLoading()
-    marvelService.getAllCharacters(offset).then(onCharListLoaded).catch(onError)
+  const onRequest = (offset, initial) => {
+    initial ? setNewItemLoading(false) : setNewItemLoading(true)
+    getAllCharacters(offset).then(onCharListLoaded)
   }
 
-  const onCharListLoading = () => {
-    setNewItemLoading(true)
-  }
 
   const onCharListLoaded = (newCharList) => {
     let ended = false
@@ -34,16 +29,11 @@ const CharList = (props) => {
       ended = true
     }
     setCharList((charList) => [...charList, ...newCharList])
-    setLoading(false)
     setNewItemLoading(false)
     setOffset((offset) => offset + 9)
     setCharEnded((charEnded) => ended)
   }
 
-  const onError = () => {
-    setError(true)
-    setLoading(false)
-  }
 
   const itemsRef = useRef([])
 
@@ -88,14 +78,14 @@ const CharList = (props) => {
   const items = renderItems(charList)
 
   const errorMessage = error ? <Error /> : null
-  const spinner = loading ? <Spinner /> : null
-  const content = !(loading || error) ? items : null
+  const spinner = loading && !newItemLoading ? <Spinner /> : null
+
 
   return (
     <div className="char__list">
       {errorMessage}
       {spinner}
-      {content}
+      {items}
       <button
         className="button button__main button__long"
         disabled={newItemLoading}
