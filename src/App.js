@@ -5,6 +5,7 @@ import CharList from './components/charList/CharList'
 import CharInfo from './components/charInfo/CharInfo'
 import decoration from './resources/img/vision.png'
 
+
 const App = () => {
   const [selectedChar, setChar] = useState(null)
 

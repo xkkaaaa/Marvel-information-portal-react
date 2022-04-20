@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import propTypes from 'prop-types'
-import './charList.scss'
+import PropTypes from 'prop-types'
 import Spinner from '../spinner/Spinner'
 import Error from '../error/Error'
 import useMarvelService from '../../services/MarvelService'
+import './charList.scss'
 
 const CharList = (props) => {
   const [charList, setCharList] = useState([])
@@ -11,7 +11,7 @@ const CharList = (props) => {
   const [offset, setOffset] = useState(210)
   const [charEnded, setCharEnded] = useState(false)
 
-  const {loading, error, getAllCharacters} = useMarvelService()
+  const { loading, error, getAllCharacters } = useMarvelService()
 
   useEffect(() => {
     onRequest(offset, true)
@@ -22,25 +22,26 @@ const CharList = (props) => {
     getAllCharacters(offset).then(onCharListLoaded)
   }
 
-
   const onCharListLoaded = (newCharList) => {
     let ended = false
     if (newCharList.length < 9) {
       ended = true
     }
+
     setCharList((charList) => [...charList, ...newCharList])
-    setNewItemLoading(false)
+    setNewItemLoading((newItemLoading) => false)
     setOffset((offset) => offset + 9)
     setCharEnded((charEnded) => ended)
   }
 
-
-  const itemsRef = useRef([])
+  const itemRefs = useRef([])
 
   const focusOnItem = (id) => {
-    itemsRef.current.forEach(item => item.classList.remove('char__item__selected'))
-    itemsRef.current[id].classList.add('char__item__selected')
-    itemsRef.current[id].focus()
+    itemRefs.current.forEach((item) =>
+      item.classList.remove('char__item_selected')
+    )
+    itemRefs.current[id].classList.add('char__item_selected')
+    itemRefs.current[id].focus()
   }
 
   function renderItems(arr) {
@@ -53,9 +54,9 @@ const CharList = (props) => {
       return (
         <li
           className="char__item"
-          key={item.id}
           tabIndex={0}
-          ref={el => (itemsRef.current[i] = el)}
+          ref={(el) => (itemRefs.current[i] = el)}
+          key={item.id}
           onClick={() => {
             props.onCharSelected(item.id)
             focusOnItem(i)
@@ -80,7 +81,6 @@ const CharList = (props) => {
   const errorMessage = error ? <Error /> : null
   const spinner = loading && !newItemLoading ? <Spinner /> : null
 
-
   return (
     <div className="char__list">
       {errorMessage}
@@ -99,7 +99,7 @@ const CharList = (props) => {
 }
 
 CharList.propTypes = {
-  onCharSelected: propTypes.func.isRequired,
+  onCharSelected: PropTypes.func.isRequired,
 }
 
 export default CharList
