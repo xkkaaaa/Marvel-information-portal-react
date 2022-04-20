@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import useMarvelService from '../../services/MarvelService'
 import Spinner from '../spinner/Spinner'
 import Error from '../error/Error'
-import './comicsList.scss'
+import './style.scss'
 
 const ComicsList = () => {
   const [comicsList, setComicsList] = useState([])
@@ -36,15 +37,11 @@ const ComicsList = () => {
     const items = arr.map((item, i) => {
       return (
         <li className="comics__item" key={i}>
-          <a href="#">
-            <img
-              src={item.thumbnail}
-              alt={item.title}
-              className="comics__item-img"
-            />
+          <Link to={`/comics/${item.id}`}>
+            <img src={item.thumbnail} alt={item.title} className="comics__item-img"/>
             <div className="comics__item-name">{item.title}</div>
             <div className="comics__item-price">{item.price}</div>
-          </a>
+          </Link>
         </li>
       )
     })
