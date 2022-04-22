@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AppHeader from './components/appHeader/AppHeader'
+import AppHeader from './components/appHeader'
 import ComicsPage from './pages/ComicsPage'
 import HomePage from './pages/HomePage'
 import Error404 from './pages/Error404'

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Spinner from '../spinner/Spinner'
-import Error from '../error/Error'
+import Error from '../error/Error.js'
 import useMarvelService from '../../services/MarvelService'
-import './charList.scss'
+import './style.scss'
 
 const CharList = (props) => {
   const [charList, setCharList] = useState([])

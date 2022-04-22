@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import './charInfo.scss'
 import useMarvelService from '../../services/MarvelService'
 import Spinner from '../spinner/Spinner'
-import Error from '../error/Error'
+import Error from '../error/Error.js'
 import Skeleton from '../skeleton/Skeleton'
+import './style.scss'
 
 const CharInfo = (props) => {
   const [char, setChar] = useState(null)

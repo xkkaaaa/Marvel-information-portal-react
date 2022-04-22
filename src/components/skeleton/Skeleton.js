@@ -1,4 +1,4 @@
-import './skeleton.scss'
+import './style.scss'
 
 const Skeleton = () => {
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import RandomChar from '../../components/randomChar/RandomChar'
-import CharList from '../../components/charList/CharList'
-import CharInfo from '../../components/charInfo/CharInfo'
+import RandomChar from '../../components/randomChar'
+import CharList from '../../components/charList'
+import CharInfo from '../../components/charInfo'
 import decoration from '../../resources/img/vision.png'
 
 const HomePage = () => {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import useMarvelService from '../../services/MarvelService'
-import './randomChar.scss'
 import mjolnir from '../../resources/img/mjolnir.png'
 import Spinner from '../spinner/Spinner'
-import Error from '../error/Error'
+import Error from '../error/Error.js'
+import './style.scss'
 
 const RandomChar = () => {
   const [char, setChar] = useState({})
