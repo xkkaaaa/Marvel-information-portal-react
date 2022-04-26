@@ -4,6 +4,7 @@ import ComicsPage from './pages/ComicsPage'
 import HomePage from './pages/HomePage'
 import Error404 from './pages/Error404'
 import SingleComicPage from './pages/SingleComicPage'
+import SingleCharacterPage from './pages/SingleCharacterPage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/comics" element={<ComicsPage />} />
             <Route path="/comics/:comicId" element={<SingleComicPage />} />
+            <Route path="/characters/:characterId" element={<SingleCharacterPage />} />
             <Route path="*" element={  <Error404 />} />
           </Routes>
         </main>

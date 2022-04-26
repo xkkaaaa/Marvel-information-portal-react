@@ -11,10 +11,10 @@ const RandomChar = () => {
 
   useEffect(() => {
     updateChar()
-    const timerId = setInterval(updateChar, 60000)
-    return () => {
-      clearInterval(timerId)
-    }
+    // const timerId = setInterval(updateChar, 60000)
+    // return () => {
+    //   clearInterval(timerId)
+    // }
   }, [])
 
   const onCharLoaded = (char) => {
@@ -52,7 +52,8 @@ const RandomChar = () => {
 }
 
 const View = ({ char }) => {
-  const { name, description, thumbnail, homepage, wiki } = char
+  let { name, description, thumbnail, homepage, wiki } = char
+
   let imgStyle = { objectFit: 'cover' }
   if (
     thumbnail ===
