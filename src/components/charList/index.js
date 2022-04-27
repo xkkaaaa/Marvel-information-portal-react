@@ -1,17 +1,32 @@
 import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
+import useMarvelService from '../../services/MarvelService'
 import Spinner from '../spinner'
 import Error from '../error'
-import useMarvelService from '../../services/MarvelService'
 import './style.scss'
+
+const setContent = (process, Component, newItemLoading) => {
+  switch (process) {
+    case 'waiting':
+      return <Spinner />
+    case 'loading':
+      return newItemLoading ? <Component /> : <Spinner />
+    case 'confirmed':
+      return <Component />
+    case 'error':
+      return <Error />
+    default:
+      throw new Error('Unexpected process state')
+  }
+}
 
 const CharList = (props) => {
   const [charList, setCharList] = useState([])
   const [newItemLoading, setNewItemLoading] = useState(false)
-  const [offset, setOffset] = useState(210)
+  const [offset, setOffset] = useState(286)
   const [charEnded, setCharEnded] = useState(false)
 
-  const { loading, error, getAllCharacters } = useMarvelService()
+  const { getAllCharacters, process, setProcess } = useMarvelService()
 
   useEffect(() => {
     onRequest(offset, true)
@@ -19,7 +34,9 @@ const CharList = (props) => {
 
   const onRequest = (offset, initial) => {
     initial ? setNewItemLoading(false) : setNewItemLoading(true)
-    getAllCharacters(offset).then(onCharListLoaded)
+    getAllCharacters(offset)
+      .then(onCharListLoaded)
+      .then(() => setProcess('confirmed'))
   }
 
   const onCharListLoaded = (newCharList) => {
@@ -29,9 +46,9 @@ const CharList = (props) => {
     }
 
     setCharList((charList) => [...charList, ...newCharList])
-    setNewItemLoading((newItemLoading) => false)
+    setNewItemLoading(false)
     setOffset((offset) => offset + 9)
-    setCharEnded((charEnded) => ended)
+    setCharEnded(ended)
   }
 
   const itemRefs = useRef([])
@@ -47,7 +64,7 @@ const CharList = (props) => {
   function renderItems(arr) {
     const items = arr.map((item, i) => {
       let imgStyle = { objectFit: 'cover' }
-      if ( item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
+      if (item.thumbnail ==='http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = { objectFit: 'unset' }
       }
 
@@ -56,7 +73,6 @@ const CharList = (props) => {
           className="char__item"
           tabIndex={0}
           ref={(el) => (itemRefs.current[i] = el)}
-          key={item.id}
           onClick={() => {
             props.onCharSelected(item.id)
             focusOnItem(i)
@@ -66,8 +82,7 @@ const CharList = (props) => {
               props.onCharSelected(item.id)
               focusOnItem(i)
             }
-          }}
-        >
+          }}>
           <img src={item.thumbnail} alt={item.name} style={imgStyle} />
           <div className="char__name">{item.name}</div>
         </li>
@@ -76,22 +91,14 @@ const CharList = (props) => {
     return <ul className="char__grid">{items}</ul>
   }
 
-  const items = renderItems(charList)
-
-  const errorMessage = error ? <Error /> : null
-  const spinner = loading && !newItemLoading ? <Spinner /> : null
-
   return (
     <div className="char__list">
-      {errorMessage}
-      {spinner}
-      {items}
+      {setContent(process, () => renderItems(charList), newItemLoading)}
       <button
         className="button button__main button__long"
         disabled={newItemLoading}
         style={{ display: charEnded ? 'none' : 'block' }}
-        onClick={() => onRequest(offset)}
-      >
+        onClick={() => onRequest(offset)}>
         <div className="inner">load more</div>
       </button>
     </div>

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import RandomChar from '../../components/randomChar'
 import CharList from '../../components/charList'
 import CharInfo from '../../components/charInfo'
-import CharSearchForm from '../../components/CharSearchForm'
+import CharSearchForm from '../../components/charSearchForm'
 import decoration from '../../assets/img/vision.png'
 
 const HomePage = () => {
