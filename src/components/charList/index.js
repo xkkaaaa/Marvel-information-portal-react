@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import Spinner from '../spinner/Spinner'
-import Error from '../error/Error.js'
+import Spinner from '../spinner'
+import Error from '../error'
 import useMarvelService from '../../services/MarvelService'
 import './style.scss'
 

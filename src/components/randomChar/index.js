@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import useMarvelService from '../../services/MarvelService'
-import mjolnir from '../../resources/img/mjolnir.png'
-import Spinner from '../spinner/Spinner'
-import Error from '../error/Error.js'
+import mjolnir from '../../assets/img/mjolnir.png'
+import Spinner from '../spinner'
+import Error from '../../components/error'
 import './style.scss'
 
 const RandomChar = () => {

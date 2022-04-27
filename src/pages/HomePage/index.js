@@ -2,8 +2,8 @@ import { useState } from 'react'
 import RandomChar from '../../components/randomChar'
 import CharList from '../../components/charList'
 import CharInfo from '../../components/charInfo'
-import decoration from '../../resources/img/vision.png'
 import CharSearchForm from '../../components/CharSearchForm'
+import decoration from '../../assets/img/vision.png'
 
 const HomePage = () => {
   const [selectedChar, setChar] = useState(null)

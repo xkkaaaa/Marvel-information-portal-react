@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useMarvelService from '../../services/MarvelService'
-import Spinner from '../spinner/Spinner'
-import Error from '../error/Error.js'
+import Spinner from '../spinner'
+import Error from '../error'
 import './style.scss'
 
 const ComicsList = () => {

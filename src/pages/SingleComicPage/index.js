@@ -1,8 +1,8 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import useMarvelService from '../../services/MarvelService'
-import Spinner from '../../components/spinner/Spinner'
-import Error from '../../components/error/Error.js'
+import Spinner from '../../components/spinner'
+import Error from '../../components/error'
 import './style.scss'
 
 const SingleComicPage = (props) => {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import useMarvelService from '../../services/MarvelService'
-import Spinner from '../spinner/Spinner'
-import Error from '../error/Error.js'
-import Skeleton from '../skeleton/Skeleton'
+import Spinner from '../spinner'
+import Error from '../error'
+import Skeleton from '../skeleton'
 import './style.scss'
 
 const CharInfo = (props) => {
