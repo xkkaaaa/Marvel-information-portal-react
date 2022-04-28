@@ -9,4 +9,5 @@ const ComicsPage = () => {
     </div>
   )
 }
+
 export default ComicsPage
