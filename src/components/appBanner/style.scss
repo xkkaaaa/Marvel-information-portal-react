@@ -2,12 +2,17 @@
 
 .app {
   &__banner {
-    width: 100%;
+    max-width: 100%;
     background-color: $dark;
-    height: 100px;
     padding: 0 25px 0 45px;
     display: grid;
     grid-template-columns: 152px auto 133px;
+
+    @media (max-width: 610px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+
     &-text {
       font-weight: bold;
       font-size: 24px;
@@ -15,6 +20,19 @@
       color: #ffffff;
       padding-left: 83px;
       padding-top: 18px;
+
+      @media (max-width: 610px) {
+        font-size: 18px;
+        white-space: nowrap;
+        padding-left: 0;
+      }
+
+
+    }
+    img {
+      @media (max-width: 610px) {
+        display: none;
+      }
     }
   }
 }

@@ -7,6 +7,10 @@
     position: relative;
     z-index: 5;
     background-color: #fff;
+    @media (max-width: 884px) {
+      margin-top: 30px;
+    }
+
     &-name {
       font-weight: bold;
       font-size: 22px;
@@ -15,6 +19,7 @@
     }
     .skeleton {
       margin-top: 30px;
+
     }
   }
   &__basics {

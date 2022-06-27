@@ -2,14 +2,19 @@
 
 .single-comic {
   margin-top: 50px;
-  display: grid;
-  grid-template-columns: 293px 550px auto;
-  column-gap: 50px;
+  display: flex;
   align-items: start;
-  &__char-img {
-    width: 293px;
-    height: 293px;
+
+  div {
+    max-width: 293px;
+    max-height: 293px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
+
   &__name {
     font-weight: bold;
     font-size: 22px;

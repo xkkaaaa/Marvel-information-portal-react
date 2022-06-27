@@ -6,10 +6,15 @@
   grid-template-columns: 293px 550px auto;
   column-gap: 50px;
   align-items: start;
-  &__img {
-    width: 293px;
-    height: 450px;
+  .image {
+    max-width: 293px;
+    max-height: 450px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
+
   &__name {
     font-weight: bold;
     font-size: 22px;
@@ -32,6 +37,10 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 24px;
+    min-width: 40px;
+    @media (max-width: 645px) {
+      display: none;
+    }
     &:hover {
       color: $main-color;
     }

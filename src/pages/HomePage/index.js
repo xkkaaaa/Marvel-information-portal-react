@@ -4,6 +4,7 @@ import CharList from '../../components/charList'
 import CharInfo from '../../components/charInfo'
 import CharSearchForm from '../../components/charSearchForm'
 import decoration from '../../assets/img/vision.png'
+import './styles.scss'
 
 const HomePage = () => {
   const [selectedChar, setChar] = useState(null)
@@ -22,7 +23,7 @@ const HomePage = () => {
           <CharSearchForm />
         </div>
       </div>
-      <img className="bg-decoration" src={decoration} alt="vision" />
+      {/* <img className="bg-decoration" src={decoration} alt="vision" /> */}
     </div>
   )
 }
