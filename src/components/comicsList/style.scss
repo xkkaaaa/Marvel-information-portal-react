@@ -7,13 +7,20 @@
     grid-template-columns: repeat(auto-fill, 225px);
     justify-content: space-between;
     row-gap: 55px;
+
+    @media(max-width: 520px){
+      grid-template-columns: repeat(2, 2fr);
+    }
   }
   &__item {
     transition: 0.3s transform;
+    margin: 10px;
     &-img {
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
-      width: 225px;
-      height: 345px;
+      max-width: 225px;
+      img{
+        width: 100%;
+      }
     }
     &-name {
       margin-top: 10px;
