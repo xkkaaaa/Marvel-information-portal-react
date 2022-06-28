@@ -1,7 +1,11 @@
 .error-404 {
-  text-align: center;
+ text-align: center;
+  div{
+    max-width: 800px;
+    margin: 0 auto;
+  }
   img {
-    width: 800px;
+    width: 100%;
   }
   .back {
     font-weight: bold;

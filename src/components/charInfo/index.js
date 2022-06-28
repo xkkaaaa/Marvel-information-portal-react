@@ -36,14 +36,14 @@ const CharInfo = (props) => {
 const View = ({ data }) => {
   const { name, description, thumbnail, homepage, wiki, comics } = data
   let imgStyle = { objectFit: 'cover' }
-  
+
   if (
     thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
     imgStyle = { objectFit: 'contain' }
   }
 
   return (
-    <>
+    <div className='selected__char'>
       <div className="char__basics">
         <img src={thumbnail} alt={name} style={imgStyle} />
         <div>
@@ -71,7 +71,7 @@ const View = ({ data }) => {
           )
         })}
       </ul>
-    </>
+    </div>
   )
 }
 

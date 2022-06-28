@@ -18,7 +18,7 @@ const HomePage = () => {
       <RandomChar />
       <div className="char__content">
         <CharList onCharSelected={onCharSelected} />
-        <div>
+        <div className='selected__char'>
           <CharInfo charId={selectedChar} />
           <CharSearchForm />
         </div>
